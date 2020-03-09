@@ -1,0 +1,58 @@
+import pprint
+n=3
+
+adjList_dict = {}
+if not(n==0):
+    adjList_dict.update([ ( (0,0) , [(1, 0),(0, 1)] ) ] )
+
+    for x in range(-n+2,n,1):
+        for y in range(-n+2,n,1):
+
+            x_distance_from0=abs(0-x)
+            y=y-x_distance_from0
+
+            if (y>0 or (y==0 and x>=0)):
+                
+                adjList_dict.update([ ( (x,y) , [] ) ] )
+                
+pprint.pprint(adjList_dict)
+mykeys=list(adjList_dict.keys())
+neighbours=[]
+
+coynt=0
+for key in range(len(mykeys)):
+        coynt=coynt+1
+        print(coynt)
+        
+        x=((mykeys[key])[0])
+        y=((mykeys[key])[1])
+        
+        westNeighbour=(x-1, y)
+        neighbours.append(westNeighbour)
+        northNeighbour=(x,y+1)
+        neighbours.append(northNeighbour)
+        eastNeighbour=(x+1,y)
+        neighbours.append(eastNeighbour)
+        southNeighbour=(x,y-1)
+        neighbours.append(southNeighbour)
+        
+        print(neighbours)
+        
+        for i in range(0,4,1): ##opoios geitonas ikanopoiei sin8ikes tote na bei sta value tou tuple
+            
+            condition1=( ((neighbours[i])[1])>0 or ( ((neighbours[i])[1])==0 and ((neighbours[i])[0])-1>=0) ) ##den doulevei swsta
+            print("condition1",condition1)
+            
+            
+            if (neighbours[i]) in mykeys: condition2=True  ##den doulevi swsta vgazei panta true
+            print("condition2",condition2)
+                
+            ##if not neighbours[i]: ## den 3erw an doulevei
+            if condition1==True:
+                if condition2==True:
+                    adjList_dict.update([ ( (x,y) , [neighbours[i]] ) ] )
+            
+        neighbours.clear()
+    
+print(neigbours)       
+pprint.pprint(adjList_dict)
